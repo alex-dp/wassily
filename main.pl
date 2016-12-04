@@ -1,13 +1,26 @@
 use strict;
+no warnings;
 use feature "switch";
 use Getopt::Long;
 use List::Util qw[min max];
 use v5.24.0;
 
-my ($width, $height, $stroke) = (100, 100, 2);
+my ($width, $height, $stroke, $help) = (100, 100, 2, '');
 GetOptions ("w=i" => \$width,
 	"h=i" => \$height,
-	"s=i" => \$stroke);
+	"s=i" => \$stroke,
+	"h" => \$help);
+
+if (! $help eq '') {
+	print "This program randomly generates SVG files.
+
+OPTIONS
+w (integer)\timage width
+h (integer)\timage height
+s (integer)\tstroke width for non-filled polygons\n";
+
+	exit();
+}
 
 print "<?xml version='1.0'?>
 <svg width='$width' height='$height'>";
