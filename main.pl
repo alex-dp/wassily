@@ -8,8 +8,8 @@ use List::Util qw[min max];
 use v5.24.0;
 require 'data.pl';
 
-my ($width, $height, $stroke, $max_shapes, $help, $fs, $txt, $bg) =
-	(100, 100, 2, 20, '', 8, rand_quote(), rand_color());
+my ($width, $height, $stroke, $max_shapes, $help, $fs, $txt, $bg, $ff) =
+	(100, 100, 2, 20, '', 8, rand_quote(), rand_color(), "serif");
 GetOptions (
 	"w=i" => \$width,
 	"h=i" => \$height,
@@ -18,11 +18,12 @@ GetOptions (
 	"help" => \$help,
 	"fs=s" => \$fs,
 	"txt=s" => \$txt,
-	"bg=s" => \$bg
+	"bg=s" => \$bg,
+	"ff=s" => \$ff
 	);
 
 if (! $help eq '') {
-	print $help;
+	print help();
 	exit();
 }
 
@@ -38,7 +39,7 @@ sub main {
 
 	my ($beg_y, $incl) = (int(rand $height) / 3, int(rand 90));
 	foreach my $part (split('\n', $txt)) {
-		print "<text x='" . int(rand $width) / 3 .
+		print "<text font-family='$ff' x='" . int(rand $width) / 3 .
 		"' y='$beg_y' " .
 		"font-size='$fs' transform='rotate($incl) skewX(" . (int(rand 90)-45) . ")'> $part </text>";
 

@@ -23,10 +23,11 @@ OPTIONS
 w (integer)\timage width
 h (integer)\timage height
 s (integer)\tstroke width for non-filled polygons
-max (integer)\tmaximum number of shapes
+max (integer)\tnumber of shapes
 fs (string)\tfont size
 txt (string)\tquote to insert
-bg (string)\tbackground color\n";
+bg (string)\tbackground color
+ff (string)\tfont family\n";
 
 sub rand_color {
 	return $colors[int(rand scalar(@colors))];
