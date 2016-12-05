@@ -37,11 +37,12 @@ sub main {
 		print("\n", rand_shape());
 	}
 
-	my ($beg_y, $incl) = (int(rand $height) / 3, int(rand 90));
+	my ($beg_y, $incl) = (int(rand $height) / 2, int(rand 90));
 	foreach my $part (split('\n', $txt)) {
-		print "<text font-family='$ff' x='" . int(rand $width) / 3 .
+		print "<text font-family='$ff' x='" . int(rand $width) / 2 .
 		"' y='$beg_y' " .
-		"font-size='$fs' transform='rotate($incl) skewX(" . (int(rand 90)-45) . ")'> $part </text>";
+		"font-size='$fs' transform='rotate($incl " . $width / 2 . " " . $height / 2 .
+		") skewX(" . (int(rand 90)-45) . ")'> $part </text>";
 
 		$beg_y += $fs;
 	}
