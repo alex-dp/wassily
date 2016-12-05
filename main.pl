@@ -6,37 +6,10 @@ use feature "switch";
 use Getopt::Long;
 use List::Util qw[min max];
 use v5.24.0;
-
-my @colors = (
-	"#ef9a9a", "#ef5350", "#f44336", "#e53935", "#c62828",
-	"#9fa8da", "#5c6bc0", "#3f51b5", "#3949ab", "#283593",
-	"#80cbc4", "#26a69a", "#009688", "#00897b", "#00695c",
-	"#a5d6a7", "#66bb6a", "#4caf50", "#43a047", "#2e7d32",
-	"#fff59d", "#ffee58", "#ffeb3b", "#fdd835", "#f9a825",
-	"#eeeeee", "#bdbdbd", "#9e9e9e", "#757575", "#424242"
-	);
-
-my @quotes = (
-	"All hope abandon,\nye who enter here.",
-	"While there's life there's hope,\nand only the dead have none.",
-	"Hope, withering, fled\nand Mercy sighed farewell.",
-	"You burn your hopes.",
-	"I hope for nothing.\nI fear nothing.\nI am free."
-	);
-
-my $help = "This program randomly generates SVG files.
-
-OPTIONS
-w (integer)\timage width
-h (integer)\timage height
-s (integer)\tstroke width for non-filled polygons
-max (integer)\tmaximum number of shapes
-fs (string)\tfont size
-txt (string)\tquote to insert
-bg (string)\tbackground color\n";
+require 'data.pl';
 
 my ($width, $height, $stroke, $max_shapes, $help, $fs, $txt, $bg) =
-	(100, 100, 2, 20, '', 8, $quotes[int(rand scalar(@quotes))], $colors[int(rand scalar(@colors))]);
+	(100, 100, 2, 20, '', 8, rand_quote(), rand_color());
 GetOptions (
 	"w=i" => \$width,
 	"h=i" => \$height,
@@ -94,8 +67,8 @@ sub rand_shape {
 		when (2) {		#Ellipse
 			$text = "<ellipse cx='" . int(rand $width) .
 				"' cy='" . int(rand $height) .
-				"' rx='" . int(rand $width) / 4 .
-				"' ry='" . int(rand $height) / 4 . "'";
+				"' rx='" . int(rand $width) / 2 .
+				"' ry='" . int(rand $height) / 2 . "'";
 		}
 		when (3) {		#Polyline
 			$text = "<polyline points='";
@@ -112,8 +85,4 @@ sub rand_shape {
 		$text = $text . " fill='none' stroke-width='$stroke' stroke='" . rand_color() . "'/>";
 	}
 	return $text;
-}
-
-sub rand_color {
-	return $colors[int(rand scalar(@colors))];
 }
