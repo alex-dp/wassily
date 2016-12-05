@@ -9,7 +9,7 @@ my ($width, $height, $stroke, $help) = (100, 100, 2, '');
 GetOptions ("w=i" => \$width,
 	"h=i" => \$height,
 	"s=i" => \$stroke,
-	"h" => \$help);
+	"help" => \$help);
 
 if (! $help eq '') {
 	print "This program randomly generates SVG files.
