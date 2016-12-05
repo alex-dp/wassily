@@ -32,17 +32,21 @@ h (integer)\timage height
 s (integer)\tstroke width for non-filled polygons
 max (integer)\tmaximum number of shapes
 fs (string)\tfont size
-txt (string) quote to insert\n";
+txt (string)\tquote to insert
+bg (string)\tbackground color\n";
 
-my ($width, $height, $stroke, $max_shapes, $help, $fs, $txt) =
-	(100, 100, 2, 20, '', 8, $quotes[int(rand scalar(@quotes))]);
-GetOptions ("w=i" => \$width,
+my ($width, $height, $stroke, $max_shapes, $help, $fs, $txt, $bg) =
+	(100, 100, 2, 20, '', 8, $quotes[int(rand scalar(@quotes))], $colors[int(rand scalar(@colors))]);
+GetOptions (
+	"w=i" => \$width,
 	"h=i" => \$height,
 	"s=i" => \$stroke,
 	"max=i" => \$max_shapes,
 	"help" => \$help,
 	"fs=s" => \$fs,
-	"txt=s" => \$txt);
+	"txt=s" => \$txt,
+	"bg=s" => \$bg
+	);
 
 if (! $help eq '') {
 	print $help;
@@ -53,8 +57,8 @@ main();
 
 sub main {
 	print "<?xml version='1.0'?>
-	<svg width='$width' height='$height'>";
-
+	<svg width='$width' height='$height'>
+	<rect height='$height' width='$width' fill='$bg'/>\n";
 	for(1..$max_shapes) {
 		print("\n", rand_shape());
 	}
