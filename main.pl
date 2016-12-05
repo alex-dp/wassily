@@ -20,6 +20,14 @@ my @quotes = ("All hope abandon, ye who enter here.",
   "You burn your hopes.",
   "I hope for nothing. I fear nothing. I am free.");
 
+my $help = "This program randomly generates SVG files.
+
+OPTIONS
+w (integer)\timage width
+h (integer)\timage height
+s (integer)\tstroke width for non-filled polygons
+max (integer)\tmaximum number of shapes\n";
+
 my ($width, $height, $stroke, $max_shapes, $help, $fs, $txt) = (100, 100, 2, 20, '', 8, $quotes[int(rand scalar(@quotes))]);
 GetOptions ("w=i" => \$width,
 	"h=i" => \$height,
@@ -30,14 +38,7 @@ GetOptions ("w=i" => \$width,
 	"txt=s" => \$txt);
 
 if (! $help eq '') {
-	print "This program randomly generates SVG files.
-
-OPTIONS
-w (integer)\timage width
-h (integer)\timage height
-s (integer)\tstroke width for non-filled polygons
-max (integer)\tmaximum number of shapes\n";
-
+	print $help;
 	exit();
 }
 
