@@ -5,10 +5,11 @@ use Getopt::Long;
 use List::Util qw[min max];
 use v5.24.0;
 
-my ($width, $height, $stroke, $help) = (100, 100, 2, '');
+my ($width, $height, $stroke, $max_shapes, $help) = (100, 100, 2, 20, '');
 GetOptions ("w=i" => \$width,
 	"h=i" => \$height,
 	"s=i" => \$stroke,
+	"max=i" => \$max_shapes,
 	"help" => \$help);
 
 if (! $help eq '') {
@@ -17,7 +18,8 @@ if (! $help eq '') {
 OPTIONS
 w (integer)\timage width
 h (integer)\timage height
-s (integer)\tstroke width for non-filled polygons\n";
+s (integer)\tstroke width for non-filled polygons
+max (integer)\tmaximum number of shapes\n";
 
 	exit();
 }
@@ -25,7 +27,7 @@ s (integer)\tstroke width for non-filled polygons\n";
 print "<?xml version='1.0'?>
 <svg width='$width' height='$height'>";
 
-for(1..int(rand 10) + 10) {
+for(1..$max_shapes) {
 	print("\n", rand_shape());
 }
 
