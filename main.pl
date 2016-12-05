@@ -8,8 +8,8 @@ use List::Util qw[min max];
 use v5.24.0;
 require 'data.pl';
 
-my ($width, $height, $stroke, $max_shapes, $help, $fs, $txt, $bg, $ff) =
-	(100, 100, 2, 20, '', 8, rand_quote(), rand_color(), "serif");
+my ($width, $height, $stroke, $max_shapes, $help, $fs, $txt, $bg, $ff, $op) =
+	(100, 100, 2, 20, '', 8, rand_quote(), rand_color(), "serif", 1.0);
 GetOptions (
 	"w=i" => \$width,
 	"h=i" => \$height,
@@ -19,7 +19,8 @@ GetOptions (
 	"fs=s" => \$fs,
 	"txt=s" => \$txt,
 	"bg=s" => \$bg,
-	"ff=s" => \$ff
+	"ff=s" => \$ff,
+	"op=f" => \$op
 	);
 
 if (! $help eq '') {
@@ -82,9 +83,9 @@ sub rand_shape {
 	}
 
 	if (int(rand 2) == 0 and $shape != 3) {
-		$text = $text . " fill='" . rand_color() . "'/>";
+		$text = $text . " fill='" . rand_color() . "' fill-opacity='$op'/>";
 	} else {
-		$text = $text . " fill='none' stroke-width='$stroke' stroke='" . rand_color() . "'/>";
+		$text = $text . " fill='none' stroke-width='$stroke' stroke='" . rand_color() . "' stroke-opacity='$op'/>";
 	}
 	return $text;
 }

@@ -20,14 +20,15 @@ my @quotes = (
 my $help = "This program randomly generates SVG files.
 
 OPTIONS
-w (integer)\timage width
-h (integer)\timage height
-s (integer)\tstroke width for non-filled polygons
-max (integer)\tnumber of shapes
-fs (string)\tfont size
-txt (string)\tquote to insert
-bg (string)\tbackground color
-ff (string)\tfont family\n";
+w (integer)\timage width (100)
+h (integer)\timage height (100)
+s (integer)\tstroke width for non-filled polygons (2)
+max (integer)\tnumber of shapes (20)
+fs (string)\tfont size (8)
+txt (string)\tquote to insert (randomly chosen among " . scalar(@quotes) . ")
+bg (string)\tbackground color (randomly chosen among " . scalar(@colors) . ")
+ff (string)\tfont family (serif)
+op (float)\tglobal shape opacity (1, fully opaque)\n";
 
 sub rand_color {
 	return $colors[int(rand scalar(@colors))];
