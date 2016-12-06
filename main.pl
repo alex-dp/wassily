@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 
 use strict;
-no warnings;
+no warnings;				#output goes to stdout
 use feature "switch";
 use Getopt::Long;
 use List::Util qw[min max];
@@ -32,15 +32,15 @@ main();
 
 sub main {
 	print "<?xml version='1.0'?>
-	<svg width='$width' height='$height'>
-	<rect height='$height' width='$width' fill='$bg'/>\n";
+<svg width='$width' height='$height'>
+\t<rect height='$height' width='$width' fill='$bg'/>\n";
 	for(1..$max_shapes) {
-		print("\n", rand_shape());
+		print("\n\t", rand_shape());
 	}
 
 	my ($beg_y, $incl) = (randy() / 2, int(rand 90));
 	foreach my $part (split('\n', $txt)) {
-		print "<text font-family='$ff' x='" . randx() / 2 .
+		print "\n\t<text font-family='$ff' x='" . randx() / 2 .
 		"' y='$beg_y' " .
 		"font-size='$fs' transform='rotate($incl " . $width / 2 . " " . $height / 2 .
 		") skewX(" . (int(rand 90)-45) . ")'> $part </text>";
