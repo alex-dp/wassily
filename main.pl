@@ -38,9 +38,9 @@ sub main {
 		print("\n", rand_shape());
 	}
 
-	my ($beg_y, $incl) = (int(rand $height) / 2, int(rand 90));
+	my ($beg_y, $incl) = (randy() / 2, int(rand 90));
 	foreach my $part (split('\n', $txt)) {
-		print "<text font-family='$ff' x='" . int(rand $width) / 2 .
+		print "<text font-family='$ff' x='" . randx() / 2 .
 		"' y='$beg_y' " .
 		"font-size='$fs' transform='rotate($incl " . $width / 2 . " " . $height / 2 .
 		") skewX(" . (int(rand 90)-45) . ")'> $part </text>";
@@ -52,40 +52,58 @@ sub main {
 }
 
 sub rand_shape {
-	my $shape = int(rand 4);
+	my $shape = int(rand 5);
 	my $text = "";
 
 	given ($shape) {
 		when (0) {		#Rectangle
-			$text = "<rect x='" . int(rand $width) .
-				"' y='" . int(rand $height) .
-				"' width='" . int(rand $width) / 2 .
-				"' height='" . int(rand $height) / 2 . "'";
+			$text = "<rect x='" . randx() .
+				"' y='" . randy() .
+				"' width='" . randx() / 2 .
+				"' height='" . randy() / 2 . "'";
 		}
 		when (1) {		#Circle
-			$text = "<circle cx='" . int(rand $width) .
-				"' cy='" . int(rand $height) .
+			$text = "<circle cx='" . randx() .
+				"' cy='" . randy() .
 				"' r='" . int(rand min($width, $height)) / 4 . "'";
 		}
 		when (2) {		#Ellipse
-			$text = "<ellipse cx='" . int(rand $width) .
-				"' cy='" . int(rand $height) .
-				"' rx='" . int(rand $width) / 2 .
-				"' ry='" . int(rand $height) / 2 . "'";
+			$text = "<ellipse cx='" . randx() .
+				"' cy='" . randy() .
+				"' rx='" . randx() / 2 .
+				"' ry='" . randy() / 2 . "'";
 		}
 		when (3) {		#Polyline
 			$text = "<polyline points='";
 			for (1..int(rand 6) + 3) {
-				$text = $text . int(rand $width) . " " . int(rand $height) . ", ";
+				$text .= randx() . " " . randy() . " ";
 			}
-			$text = $text . "'";
+			$text .= "'";
+		}
+		when (4) {		#Curve path
+			$text = "<path d='M " . randx() . " " . randy();
+			for (1..int rand 4) {
+				$text .= " C";
+				for (1..3) {
+					$text .= " " . randx() . " " . randy();
+				}
+			}
+			$text .= "'";
 		}
 	}
 
-	if (int(rand 2) == 0 and $shape != 3) {
-		$text = $text . " fill='" . rand_color() . "' fill-opacity='$op'/>";
+	if (int(rand 2) == 0 and $shape < 3) {
+		$text .= " fill='" . rand_color() . "' fill-opacity='$op'/>";
 	} else {
-		$text = $text . " fill='none' stroke-width='$stroke' stroke='" . rand_color() . "' stroke-opacity='$op'/>";
+		$text .= " fill='none' stroke-width='$stroke' stroke='" . rand_color() . "' stroke-opacity='$op'/>";
 	}
 	return $text;
+}
+
+sub randx {
+	return int(rand $width);
+}
+
+sub randy {
+	return int(rand $height);
 }

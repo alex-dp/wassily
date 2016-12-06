@@ -14,7 +14,24 @@ my @quotes = (
 	"While there's life there's hope,\nand only the dead have none.",
 	"Hope, withering, fled\nand Mercy sighed farewell.",
 	"You burn your hopes.",
-	"I hope for nothing.\nI fear nothing.\nI am free."
+	"I hope for nothing.\nI fear nothing.\nI am free.",
+	"Why do people have\nto be this lonely?",
+	"Memories need to be shared",
+	"Solitude is fine",
+	"It never felt right",
+	"Of all sad words\nthe saddest are these\n'It might have been'",
+	"Hate is too great a burden to bear",
+	"We've learned to rush\nbut not to wait",
+	"not only to love his enemies\nbut also to hate his friends",
+	"a lack of friendship\nmakes unhappy marriages",
+	"Yes, Piglet?\nNothing, said Piglet\nI just wanted to be sure of you.",
+	"death is but the next great adventure",
+	"Pity the living",
+	"Death ends a life\nnot a relationship",
+	"A lot of you cared\njust not enough",
+	"Nobody thinks\nor feels\nor cares any more",
+	"it has found no remedy\nfor the worst of them all",
+	"nothing more\nthan a tiny speck"
 	);
 
 my $help = "This program randomly generates SVG files.
