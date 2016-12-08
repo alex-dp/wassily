@@ -76,7 +76,7 @@ sub rand_shape {
 		when (3) {		#Polyline, made as a straight path
 			$text = "<path d='M ";
 			for my $i (1..int(rand 6) + 3) {
-				if ($i != 1) { $text .= "L "; }999999999999999999999999999999999999oòòòòòòòòòòòòòòòòòòòòòòòòòòòòòòòòòòòòl tfgrjkid       
+				if ($i != 1) { $text .= "L "; }
 				$text .= randx() . " " . randy() . " ";
 			}
 			$text .= "'";
