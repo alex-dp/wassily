@@ -5,7 +5,7 @@ no warnings;				#output goes to stdout
 use feature "switch";
 use Getopt::Long;
 use List::Util qw[min max];
-use v5.24.0;
+use v5.21.1;
 require 'data.pl';
 
 my ($width, $height, $stroke, $max_shapes, $help, $fs, $txt, $bg, $ff, $op) =
@@ -73,9 +73,10 @@ sub rand_shape {
 				"' rx='" . randx() / 2 .
 				"' ry='" . randy() / 2 . "'";
 		}
-		when (3) {		#Polyline
-			$text = "<polyline points='";
-			for (1..int(rand 6) + 3) {
+		when (3) {		#Polyline, made as a straight path
+			$text = "<path d='M ";
+			for my $i (1..int(rand 6) + 3) {
+				if ($i != 1) { $text .= "L "; }
 				$text .= randx() . " " . randy() . " ";
 			}
 			$text .= "'";
@@ -83,8 +84,8 @@ sub rand_shape {
 		when (4) {		#Curve path
 			$text = "<path d='M " . randx() . " " . randy();
 			for (1..int rand 4) {
-				$text .= " C";
-				for (1..3) {
+				$text .= " Q";
+				for (1..2) {
 					$text .= " " . randx() . " " . randy();
 				}
 			}
@@ -92,7 +93,7 @@ sub rand_shape {
 		}
 	}
 
-	if (int(rand 2) == 0 and $shape < 3) {
+	if (int(rand 3) == 0 and $shape < 3) {
 		$text .= " fill='" . rand_color() . "' fill-opacity='$op'/>";
 	} else {
 		$text .= " fill='none' stroke-width='$stroke' stroke='" . rand_color() . "' stroke-opacity='$op'/>";

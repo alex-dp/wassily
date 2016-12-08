@@ -24,14 +24,15 @@ my @quotes = (
 	"We've learned to rush\nbut not to wait",
 	"not only to love his enemies\nbut also to hate his friends",
 	"a lack of friendship\nmakes unhappy marriages",
-	"Yes, Piglet?\nNothing, said Piglet\nI just wanted to be sure of you.",
+	"'Yes, Piglet?'\n'Nothing', said Piglet\n'I just wanted to be sure of you.'",
 	"death is but the next great adventure",
 	"Pity the living",
 	"Death ends a life\nnot a relationship",
 	"A lot of you cared\njust not enough",
 	"Nobody thinks\nor feels\nor cares any more",
 	"it has found no remedy\nfor the worst of them all",
-	"nothing more\nthan a tiny speck"
+	"nothing more\nthan a tiny speck",
+	"Allow me to interject"
 	);
 
 my $help = "This program randomly generates SVG files.
