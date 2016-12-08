@@ -16,7 +16,7 @@ GetOptions (
 	"s=i" => \$stroke,
 	"max=i" => \$max_shapes,
 	"help" => \$help,
-	"fs=s" => \$fs,
+	"fs=i" => \$fs,
 	"txt=s" => \$txt,
 	"bg=s" => \$bg,
 	"ff=s" => \$ff,
@@ -76,7 +76,7 @@ sub rand_shape {
 		when (3) {		#Polyline, made as a straight path
 			$text = "<path d='M ";
 			for my $i (1..int(rand 6) + 3) {
-				if ($i != 1) { $text .= "L "; }
+				if ($i != 1) { $text .= "L "; }999999999999999999999999999999999999oòòòòòòòòòòòòòòòòòòòòòòòòòòòòòòòòòòòòl tfgrjkid       
 				$text .= randx() . " " . randy() . " ";
 			}
 			$text .= "'";
