@@ -48,6 +48,11 @@ sub main {
 		$beg_y += $fs;
 	}
 
+	if ($txt eq "Allow me to interject") {
+		print "<image xlink:href='pepper.png' x='" . $width / 4 . "' y='" . $height / 4 .
+			"' height='" . $height / 2 . "' width='" . $width / 2 . "'/>"
+	}
+
 	print "\n</svg>";
 }
 
