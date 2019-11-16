@@ -6,7 +6,7 @@ use feature "switch";
 use Getopt::Long;
 use List::Util qw[min max];
 use v5.21.1;
-require 'data.pl';
+require './data.pl';
 
 my ($width, $height, $stroke, $max_shapes, $help, $fs, $txt, $bg, $ff, $op) =
 	(100, 100, 2, 20, '', 8, rand_quote(), rand_color(), "serif", 1.0);
